@@ -51,12 +51,14 @@ def traverse(coord, word, visited, passed_diagonals):
 
         if is_diagonal:
             passed_diagonals.append((coord, connection))
+            passed_diagonals.append(((coord[0], (coord[1] + 1) % size_y), (connection[0], (connection[1] + 1) % size_y)))
         
         traverse(connection, word, visited, passed_diagonals)
 
         word.pop()
         visited.remove(connection)
         if is_diagonal:
+            passed_diagonals.pop()
             passed_diagonals.pop()
 
 for i, _ in enumerate(letters):
